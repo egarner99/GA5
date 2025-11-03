@@ -134,37 +134,88 @@ total 0
 -rw-rw----+ 1 egarner99 PAS2880 0 Nov  2 20:19 testfile.sh
 ```
 
-Looking at the script and also based 
+After trying a couple of options based on the script, I asked another question as well:
 
+**Question 3:** I entered in ./bulk-chmod.sh --path ./scripts --match "*.sh" --files +x to the terminal, why didn't it change the permissions?
 
+**Code Provided:** 
 
+One option it gave was to try to add --recursive and --dryrun, which I tried: 
+```bash
+./bulk-chmod.sh --path ./scripts --files +x --recursive --dry-run
+```
 
+It also didn't work at first. I reloaded VS code and tried again, and got the output it said I should: 
 
+```bash
+Found 2 files and 1 directories to consider.
+[DRY-RUN] chmod +x './scripts/testfile.sh'
+[DRY-RUN] chmod +x './scripts/testfile2.sh'
+Done.
+```
 
+Meaning that the original script works!
+
+**Question 4/5:**
+
+Can you explain for a 7th grader how the bulk-chmod.sh script works?
+
+Can you explain in simple terms what the inside of the bulk-chmod.sh script does?
+
+**Results #4/5:**
+
+I prefer the explanation given for the second question, as it was a bit more in-depth (as seen in screenshots). It gave some code as well, but I had already tested the script.
 
 **Thoughts:**
 
-This question was a bit simple, but I like how straightforward the answers was, and how it gave different options for both Linux/MacOS and Windows. 
+I thought that Microsoft Copilot was very helpful! It gave pretty straightforward answers, and even though the issue was just that I needed to reload VS Code, if there was an issue with the original code it seems pretty good at trouble-shooting. The script's instructions were pretty clear with how to use it as well. In regards to how it works, based on what the AI says (see screenshots for question 4/5), it confirms that a path and action were given, determines the file or dir that you want to change, and then changes the permission to what you want it to be, and with dry-run, it just says what it would do, which it seemed to do. Though I didn't take screenshots of all of them, the code to do this on a Windows was also provided as an option. 
+
+
+**Notes:**
+
+I also went back and checked if the first code I entered, `./bulk-chmod.sh --path ./scripts --match "*.sh" --files +x` would work, and I added --dry-run at the end so it wouldn't change anything. It did (output below), so the actual issue was that VS Code needed to reload. Nonetheless, Microsoft Copilot was pretty helpful!
+
+Output: 
+```bash
+Found 2 files and 1 directories to consider.
+[DRY-RUN] chmod +x './scripts/testfile2.sh'
+[DRY-RUN] chmod +x './scripts/testfile.sh'
+Done.
+```
+
+## Trial 3: 
+
+**AI Tool:** GitHub Copilot
+
+**Question 1:** Write code to analyze files using the program STAR. 
+
+**Code Provided:**
+
+It first created a `run_star.sh` script and asked for an allow to make it executable: 
+```bash
+chmod +x /fs/ess/PAS2880/users/egarner99/GA5/run_star.sh && echo 'chmod OK'
+```
+
+According to the AI, it did the same to create a test dir and test samples, as well as did a test dry-run:
+
+```bash
+mkdir -p test_star_index test_star_fastq && cd test_star_fastq && touch sample_R1.fastq.gz sample_R2.fastq.gz sampleSE.fastq.gz && cd .. && ./run_star.sh -i test_star_index -p -t 4 -n test_star_fastq
+```
+
+The code in the script is a bit lengthy, and can be seen in `run_star.sh`. 
+
+It also gave different codes to run it, the one I'm going to try is the dry-run: 
+```bash
+./run_star.sh -i /path/to/star_index -p -n -o star_results samples/*_R1.fastq.gz
+```
+
+**Results:**
 
 
 
+## Trial 4: 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+**AI Tool:** Microsoft Copilot
 
 ## Trial #5: 
 
