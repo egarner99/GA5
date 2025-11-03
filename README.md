@@ -7,7 +7,7 @@
 
 **Code Provided:**
 
-It gave me a lot of different options that can be applied to several different situations (as seen in the screenshots), the one that I was looking for was how to ignore new/untracked files, in which it described creating a `.gitignore` file and typing in the dirs and/or files you don't want tracked, then commiting the git ignore file:
+It gave me a lot of different options that can be applied to several different situations (as seen in the screenshots), the one that I was looking for was how to ignore new/untracked files, in which it described creating a `.gitignore` file, type in the dirs and/or files you don't want tracked, then commiting the git ignore file:
  
 ```bash
 git add .gitignore
@@ -65,7 +65,7 @@ Checking git status also showed it was now untracked as well.
 
 **Thoughts:** 
 
-The code it provided did work, and the answers did seem work. It did give a lot of options though, and although the explanations were good, it was a bit overwhelming based on the question I asked. This could just mean you have to be very specific with the questions. 
+The code it provided did work, and the answers seemed correct. It did give a lot of options, and although the explanations were good it was a bit overwhelming based on the short question I asked. However, this could just mean you have to be very specific with the questions. 
 
 
 ## Trial 2: 
@@ -88,7 +88,7 @@ And to check permissions:
 ls -l filename.txt
 ```
 
-**Results #1:**
+**Results 1:**
 
 I tried the check permissions command initially, and got the output: 
 
@@ -110,18 +110,17 @@ I tested the other as well to make it executable, and it worked as well:
 
 **Question 2:** One option it offered was to create a script that sets permissions for multiple files automatically, so I asked it to do so: Yes, create a script that sets permissions for multiple files automatically. 
 
-**Code Provided**: 
+**Code Provided & Results:**: 
 
 Using the one for Linux/macOS, it is a bit lengthy but can be found in the script `bulk-chmod.sh`. It also gave a tip to make it executable: `chmod +x bulk-chmod.sh`.
 
 It also provided some examples, one of which I will be using to test: 
 ```bash
-
 # Make all .sh files executable (keep other bits unchanged)
 ./bulk-chmod.sh --path ./scripts --match "*.sh" --files +x
 ```
 
-I created new files to test this as well, testfile.sh and testfile2.sh and put them in a scripts dir.
+I created new files to test this as well, `testfile.sh` and `testfile2.sh` and put them in a scripts dir.
 
 I then ran the code as follows:
 ```bash
@@ -139,7 +138,7 @@ After trying a couple of options based on the script, I asked another question a
 
 **Question 3:** I entered in ./bulk-chmod.sh --path ./scripts --match "*.sh" --files +x to the terminal, why didn't it change the permissions?
 
-**Code Provided:** 
+**Code Provided & Results:** 
 
 One option it gave was to try to add --recursive and --dry-run, which I tried: 
 ```bash
@@ -163,18 +162,18 @@ Can you explain for a 7th grader how the bulk-chmod.sh script works?
 
 Can you explain in simple terms what the inside of the bulk-chmod.sh script does?
 
-**Results #4/5:**
+**Results 4/5:**
 
 I prefer the explanation given for the second question, as it was a bit more in-depth (as seen in screenshots). It gave some code as well, but I had already tested the script.
 
 **Thoughts:**
 
-I thought that Microsoft Copilot was very helpful! It gave pretty straightforward answers, and even though the issue was just that I needed to reload VS Code, if there was an issue with the original code it seems pretty good at trouble-shooting. The script's instructions were pretty clear with how to use it as well. In regards to how it works, based on what the AI says (see screenshots for question 4/5), it confirms that a path and action were given, determines the file or dir that you want to change, and then changes the permission to what you want it to be, and with dry-run, it just says what it would do, which it seemed to do. Though I didn't take screenshots of all of them, the code to do this on a Windows was also provided as an option. 
+I thought that Microsoft Copilot was helpful, it gave pretty straightforward answers. Even though the issue was just that I needed to reload VS Code, if there was an issue with the original code it seems pretty good at trouble-shooting. The script's instructions were pretty clear with how to use it as well. My only complaint would be you have to create the .sh files and create the script manually, unlike GitHub Copilot. In regards to how it works, based on what the AI says (see screenshots for question 4/5), it confirms that a path and action were given, determines the file or dir that you want to change, and then changes the permission to what you want it to be, and with dry-run, it just states what it would do to the terminal, which it seemed to do. Though I didn't take screenshots of all of them, the code to do this on a Windows was also provided as an option. 
 
 
 **Notes:**
 
-I also went back and checked if the first code I entered, `./bulk-chmod.sh --path ./scripts --match "*.sh" --files +x` would work, and I added --dry-run at the end so it wouldn't change anything. It did (output below), so the actual issue was that VS Code needed to reload. Nonetheless, Microsoft Copilot was pretty helpful!
+I also went back and checked if the first code I entered, `./bulk-chmod.sh --path ./scripts --match "*.sh" --files +x` would work, and I added --dry-run at the end so it wouldn't change anything. It did (output below), so again the actual issue was that VS Code needed to reload. Nonetheless, Microsoft Copilot was pretty helpful!
 
 Output: 
 ```bash
@@ -197,7 +196,7 @@ It first created a `run_star.sh` script and asked for an allow to make it execut
 chmod +x /fs/ess/PAS2880/users/egarner99/GA5/run_star.sh && echo 'chmod OK'
 ```
 
-According to the AI, it did the same to create a test dir and test samples, as well as did a test dry-run:
+According to the AI, it did the same to create a test dir and test samples, as well as did a test dry-run I believe:
 
 ```bash
 mkdir -p test_star_index test_star_fastq && cd test_star_fastq && touch sample_R1.fastq.gz sample_R2.fastq.gz sampleSE.fastq.gz && cd .. && ./run_star.sh -i test_star_index -p -t 4 -n test_star_fastq
@@ -211,6 +210,7 @@ It also gave different codes to run it, the one I'm going to try is the dry-run:
 ```
 
 **Results 1:**
+
 After a bit of trial and error, the code does seem to work, using the dry run code: 
 ```bash
 ./run_star.sh -i test_star_index/ -p -n -o star_results test_star_fastq/*_R1.fastq.gz
@@ -226,12 +226,12 @@ Done (dry-run=1). Output base dir: star_results
 
 **Results 2:**
 
-It seemed to explain it pretty well, based on the AI (see screenshots for question 2), it accepts files or dirs, then creates a command for each file to then "send" to STAR. It also has options for a dry-run. 
+It seemed to explain it pretty well, based on the AI (see screenshots for question 2), it confirms the files or dirs that you want, then creates a command for each file to then "send" to STAR. It also has options for a dry-run. 
 
 It also gave some code to run, but again this has already been tested. 
 
 **Thoughts:**
-I really like the dry-run options, similar to Microsoft Copilot, giving me a chance to see if it works before attempting to actually run. I think its interesting that it will do a dry-run on its own before finishing its response, but otherwise it is very informative. Using the dry-run option, the code worked as well. I may have to use this for my final project as well. 
+I really like the dry-run options, similar to Microsoft Copilot, giving me a chance to see if it works before attempting to actually run. I think its interesting that it will do a dry-run on its own before finishing its response to seemingly "test" its answer, but otherwise it is very informative. Using the dry-run option, the code worked as well. I may have to use this for my final project as well. 
 
 
 ## Trial 4: 
@@ -248,7 +248,7 @@ It also asked for permission to create test dirs and samples:
 
 It gave me a few options to use, the one I am going to try is:
 ```bash
-/run_trimgalore_container.sh -c trim-galore.sif -p -o trimmed_output data/*.fastq.gz
+./run_trimgalore_container.sh -c trim-galore.sif -p -o trimmed_output data/*.fastq.gz
 ```
 
 It also gave me code to get the Trim Galore container:
@@ -256,17 +256,31 @@ It also gave me code to get the Trim Galore container:
 apptainer pull trim-galore.sif docker://quay.io/biocontainers/trim-galore:0.6.7--hdfd78af_0
 ```
 
-I opened the container using the code given, then using the code provided I ran the script (the data dir just had some garrigos-data files copied):
+I opened the container using the code given, then using the code provided earlier I ran the script (the data dir just had some garrigos-data files I copied):
 ```bash
-/run_trimgalore_container.sh -c trim-galore.sif -p -o trimmed_output data/*.fastq.gz
+./run_trimgalore_container.sh -c trim-galore.sif -p -o trimmed_output data/*.fastq.gz
 ```
 
-**Results:**
+**Results 1:**
+
+It looks like the code worked, it created a `trimmed_output` dir which contained `.fq.gz` files and `.fastq.gz_trimming_report.txt` for the two files I had in the data dir. It also created a trim-galore.sif filed, and printed quite a bit of text to the screen, the final of which said: 
+```bash
+Done (dry-run=0). Output directory: trimmed_output
+```
+The full output was put in a file called `trim_galore_trial` if needed for reference.
+
+**Question 2:** Can you explain what this script does in simple terms?
+
+**Results 2:**
+
+Based and summarizing what the AI stated (see screenshots), it accepts the options given in the script, determines which fastq files to run based on the path given, makes an output dir, and collects pairs if they are there and creates a commamd for each file to run it through TrimGalore. Similar to the others, it also has a dry run option that will just says what it would do to screen.
 
 
 **Thoughts:**
 
-## Trial 5: 
+I liked how the AI created the script for me, unlike Microsoft CoPilot where you have to create and enter in the code manually. I also like how it provided different usage options, as well as described what the options in the code does. The script is a bit complicated, but based on what the AI says it is supposed to do (accept the files given, run each one through Trim Galore) it worked correctly. This is a bit different than Microsoft Copilot, which seems to give more simple answers.
+
+## Trial 5 (extra):
 
 **AI Tool** - GitHub Copilot
 
@@ -323,11 +337,11 @@ Additionally, it said to make a text file `sra_downloads.txt` with the desired U
 
 It then said to run the script using `./download_sra.sh sra_downloads.txt`
 
-**Result #1:**
+**Result 1:**
 
 The code didn't seem to really work, all it did was create the downloads dir. It looks like I missed a step, so I allowed it to create an example input file based on its suggestion.
 
-**Prompt #2:** Yes, create an example input file with the urls ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR247/027/SRR24727827/SRR24727827_1.fastq.gz
+**Question 2:** Yes, create an example input file with the urls ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR247/027/SRR24727827/SRR24727827_1.fastq.gz
 ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR247/027/SRR24727827/SRR24727827_2.fastq.gz
 
 **Code Provided:**
@@ -339,15 +353,19 @@ ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR247/027/SRR24727827/SRR24727827_2.fastq.gz
 
 And then ran the script again with the code provided: `./download_sra.sh sra_downloads.txt`
 
-**Results #2:**
+**Results 2:**
 
 It worked, both files were downloaded, renamed, and add to a downloads dir. As I wasn't sure what each section of the code was supposed to do, I asked another follow up question. 
 
-**Question #3:** Can you explain each part of the download_sra.sh script and how it works?
+**Question 3:** Can you explain each part of the download_sra.sh script and how it works?
 
-**Results #3:**
+**Results 3:**
 
-Seemed to explain it pretty well, had a section for the file existence check and that `[! -f "$input_file"]` is for that, creating the directory, how the main download loop works with downloading and renaming the file, which it was able to do, and more (as seen in the screenshots). 
+Seemed to explain it pretty well, to summarize what it said, the code checks if the file is present with `[! -f "$input_file"]`and creates a new directory. In the main section, the `while` begins the loop, the field separator becomes a comma (so that the file url and new name become two different variables), and then uses that to download and rename the files. It was able to do so. 
 
 **Thoughts:**
 It was very helpful, initially I was confused on why it only created the downloads file, but by allowing it to rewrite the `sra_downloads.txt` file, I was able to run it correctly. Interestingly, this wasn't the original code asking the question gave me, I had to restore the checkpoint to ask the question again after I thought I accidentally deleted a part of another script it gave me, so I think it is very interesting that it changed its answer. However, I think I may use this to download files for my final project.
+
+
+## Note: 
+I tried to organize most of the example/test files based on the trials they were used in, though a few may be mixed up!
