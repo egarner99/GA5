@@ -369,3 +369,5 @@ It was very helpful, initially I was confused on why it only created the downloa
 
 ## Note: 
 I tried to organize most of the example/test files based on the trials they were used in, though a few may be mixed up!
+
+Committed to the git repository GA5
