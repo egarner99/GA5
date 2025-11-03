@@ -7,7 +7,7 @@
 
 **Code Provided:**
 
-It gave me a lot of different code that can be applied to several different situations (as seen in the screenshots), the one that I was looking for was how to ignore new/untracked files, in which it described creating a `.gitignore` file and typing in the dirs and/or files you don't want tracked, then commiting the git ignore file:
+It gave me a lot of different options that can be applied to several different situations (as seen in the screenshots), the one that I was looking for was how to ignore new/untracked files, in which it described creating a `.gitignore` file and typing in the dirs and/or files you don't want tracked, then commiting the git ignore file:
  
 ```bash
 git add .gitignore
@@ -31,6 +31,7 @@ git commit -m "Apply .gitignore to repository"
 
 **Results #1:**
 Since I already had a .gitignore file, I followed the code provided to commit it, which worked. 
+
 Output: 
 ```bash
 git commit -m "Add .gitignore"
@@ -120,7 +121,7 @@ It also provided some examples, one of which I will be using to test:
 ./bulk-chmod.sh --path ./scripts --match "*.sh" --files +x
 ```
 
-I created a new files to test this as well, testfile.sh and testfile2.sh and put them in a scripts dir.
+I created new files to test this as well, testfile.sh and testfile2.sh and put them in a scripts dir.
 
 I then ran the code as follows:
 ```bash
@@ -140,7 +141,7 @@ After trying a couple of options based on the script, I asked another question a
 
 **Code Provided:** 
 
-One option it gave was to try to add --recursive and --dryrun, which I tried: 
+One option it gave was to try to add --recursive and --dry-run, which I tried: 
 ```bash
 ./bulk-chmod.sh --path ./scripts --files +x --recursive --dry-run
 ```
@@ -209,15 +210,63 @@ It also gave different codes to run it, the one I'm going to try is the dry-run:
 ./run_star.sh -i /path/to/star_index -p -n -o star_results samples/*_R1.fastq.gz
 ```
 
-**Results:**
+**Results 1:**
+After a bit of trial and error, the code does seem to work, using the dry run code: 
+```bash
+./run_star.sh -i test_star_index/ -p -n -o star_results test_star_fastq/*_R1.fastq.gz
+```
 
+I got the output: 
+```bash
++ STAR --genomeDir test_star_index/ --readFilesIn /fs/ess/PAS2880/users/egarner99/GA5/test_star_fastq/sample_R1.fastq.gz /fs/ess/PAS2880/users/egarner99/GA5/test_star_fastq/sample_R2.fastq.gz --runThreadN 8 --outFileNamePrefix star_results/sample/ --outSAMtype BAM SortedByCoordinate --readFilesCommand zcat
+Done (dry-run=1). Output base dir: star_results
+```
+
+**Question 2:** Can you explain in simple terms the inside of the run_star.sh script
+
+**Results 2:**
+
+It seemed to explain it pretty well, based on the AI (see screenshots for question 2), it accepts files or dirs, then creates a command for each file to then "send" to STAR. It also has options for a dry-run. 
+
+It also gave some code to run, but again this has already been tested. 
+
+**Thoughts:**
+I really like the dry-run options, similar to Microsoft Copilot, giving me a chance to see if it works before attempting to actually run. I think its interesting that it will do a dry-run on its own before finishing its response, but otherwise it is very informative. Using the dry-run option, the code worked as well. I may have to use this for my final project as well. 
 
 
 ## Trial 4: 
 
-**AI Tool:** Microsoft Copilot
+**AI Tool:** GitHub Copilot
 
-## Trial #5: 
+**Question 1:** Write a script to run fastq.gz files through TrimGalore through apptainer.
+
+**Code Provided:**
+It created a script called `run_trimgalore.sh` (exact code can be seen in the script) and asked for permission to run this command: `chmod +x /fs/ess/PAS2880/users/egarner99/GA5/run_trimgalore_container.sh && echo "chmod OK"`
+
+It also asked for permission to create test dirs and samples: 
+`mkdir -p test_trim/data && cd test_trim/data && touch sample_R1.fastq.gz sample_R2.fastq.gz single.fastq.gz && cd ../.. && ./run_trimgalore_container.sh -n -p -o trimmed test_trim/data/*.fastq.gz`
+
+It gave me a few options to use, the one I am going to try is:
+```bash
+/run_trimgalore_container.sh -c trim-galore.sif -p -o trimmed_output data/*.fastq.gz
+```
+
+It also gave me code to get the Trim Galore container:
+```bash
+apptainer pull trim-galore.sif docker://quay.io/biocontainers/trim-galore:0.6.7--hdfd78af_0
+```
+
+I opened the container using the code given, then using the code provided I ran the script (the data dir just had some garrigos-data files copied):
+```bash
+/run_trimgalore_container.sh -c trim-galore.sif -p -o trimmed_output data/*.fastq.gz
+```
+
+**Results:**
+
+
+**Thoughts:**
+
+## Trial 5: 
 
 **AI Tool** - GitHub Copilot
 
@@ -276,7 +325,7 @@ It then said to run the script using `./download_sra.sh sra_downloads.txt`
 
 **Result #1:**
 
-The code didn't seem to really work, unless I missed a step. All it did was create the downloads dir. It looks like a missed a step, so I allowed it to create an example input file based on its suggestion.
+The code didn't seem to really work, all it did was create the downloads dir. It looks like I missed a step, so I allowed it to create an example input file based on its suggestion.
 
 **Prompt #2:** Yes, create an example input file with the urls ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR247/027/SRR24727827/SRR24727827_1.fastq.gz
 ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR247/027/SRR24727827/SRR24727827_2.fastq.gz
@@ -301,4 +350,4 @@ It worked, both files were downloaded, renamed, and add to a downloads dir. As I
 Seemed to explain it pretty well, had a section for the file existence check and that `[! -f "$input_file"]` is for that, creating the directory, how the main download loop works with downloading and renaming the file, which it was able to do, and more (as seen in the screenshots). 
 
 **Thoughts:**
-It was very helpful, initially I was confused on why it only created the downloads file, but by allowing it to rewrite the `sra_downloads.txt` file, I was able to run it correctly. Interestingly, this wasn't the original code asking the question gave me, I had to restore the checkpoint to ask the question again after I thought I accidentally deleted a part of another script it gave me, so I think it is very interesting that it changed its answer. However, I think I may use this to download files for my final project. 
+It was very helpful, initially I was confused on why it only created the downloads file, but by allowing it to rewrite the `sra_downloads.txt` file, I was able to run it correctly. Interestingly, this wasn't the original code asking the question gave me, I had to restore the checkpoint to ask the question again after I thought I accidentally deleted a part of another script it gave me, so I think it is very interesting that it changed its answer. However, I think I may use this to download files for my final project.
