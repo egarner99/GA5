@@ -366,6 +366,35 @@ Seemed to explain it pretty well, to summarize what it said, the code checks if 
 **Thoughts:**
 It was very helpful, initially I was confused on why it only created the downloads file, but by allowing it to rewrite the `sra_downloads.txt` file, I was able to run it correctly. Interestingly, this wasn't the original code asking the question gave me, I had to restore the checkpoint to ask the question again after I thought I accidentally deleted a part of another script it gave me, so I think it is very interesting that it changed its answer. However, I think I may use this to download files for my final project.
 
+## Trial 6 (extra):
+
+**AI Tool:** GitHub Copilot
+
+**Question 1:** Write a code to unzip multiple files at once. 
+
+**Code Provided:** 
+It created a script to do so, called `bulk_unzip.sh` (code is a bit long, can be seen in the file). It asked for permission to make it executable: `chmod +x /fs/ess/PAS2880/users/egarner99/GA5/bulk_unzip.sh && echo "chmod OK"`, and gave some examples to use. I copied the data dir for one of the previous trials (called `data2`) and used this command from the options given:
+
+```bash
+./bulk_unzip.sh -o unpacked *.fastq.gz
+```
+
+I changed the `*.fastq.gz` to `data2/*.fastq.gz` to make sure it only unzips those files:
+
+```bash
+./bulk_unzip.sh -o unpacked data2/*.fastq.gz
+```
+
+**Results:**
+
+It worked, creating an unpacked dir with two unzipped files (`ERR10802863_R1.fastq` and `ERR10802863_R2.fastq`). I also got this output in the terminal, also letting me know it worked: 
+```bash
+Done!
+```
+
+**Thoughts:**
+
+Similar to the other trials, I liked how it created the script for me. Again, the script's code was on the complicated side, however the AI described what the script is supposed to do (see the screenshots). Based on what it said, it finds which files you want to unzip, makes an output dir, applies the unzip options you specified (if you want originals, etc.), applies it, then moves it into the outdir. Based on the code I used, it did all it was supposed to (made an outdir, unzipped the files in the data2 dir). 
 
 ## Note: 
 I tried to organize most of the example/test files based on the trials they were used in, though a few may be mixed up!
